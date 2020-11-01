@@ -1,0 +1,20 @@
+header, main, footer {
+  padding: 10px;
+  text-align: center;
+  width: 900px;
+  margin: auto;
+}
+
+header, main {
+  font-family: 'Turret Road', cursive;
+  font-weight: bold;
+}
+
+img {
+  width: 200px;
+  padding: 20px 10px 20px 10px;
+}
+
+footer {
+  font-family: 'Syne Mono', monospace;
+}
