@@ -2,10 +2,13 @@
 
 var boxEl = document.getElementById('box');
 var imgOneEl = document.getElementById('img-one');
-var imgTwoE = document.getElementById('img-two');
+var imgTwoEl = document.getElementById('img-two');
 var imgThreeEl = document.getElementById('img-three');
-var sumClicks = [];
+var results = document.getElementById('results');
+var picks = 0;
 var catalogArr = [];
+var voteCap = 25;
+
 
 function Catalog(name) {
   this.name = name;
@@ -15,14 +18,8 @@ function Catalog(name) {
   catalogArr.push(this);
 }
 
-function rdmPix(){
+function rdmPix() {
   return Math.floor(Math.random() * catalogArr.length);
-}
-
-function selector{
-  var catOne = rdmPix();
-  var catTwo = rdmPix()
-  var catThree = rdmPix()
 }
 
 new Catalog('bag');
@@ -46,6 +43,60 @@ new Catalog('usb');
 new Catalog('water-can');
 new Catalog('wine-glass');
 
+
+
+function renderPicks() {
+  var pickOne = rdmPix();
+  var pickTwo = rdmPix();
+  var pickThree = rdmPix();
+
+  while (pickTwo === pickOne) {
+    pickTwo = rdmPix;
+    while (pickThree === pickTwo || pickThree === pickOne) {
+      pickThree = rdmPix;
+    }
+  }
+
+  imgOneEl.src = catalogArr[pickOne].src;
+  imgOneEl.alt = catalogArr[pickOne].name;
+  imgTwoEl.src = catalogArr[pickTwo].src;
+  imgTwoEl.alt = catalogArr[pickTwo].name;
+  imgThreeEl.src = catalogArr[pickThree].src;
+  imgThreeEl.alt = catalogArr[pickThree].name;
+
+  catalogArr[pickOne].views++;
+  catalogArr[pickTwo].views++;
+  catalogArr[pickThree].views++;
+}
+
+function renderResults() {
+  for (var i = 0; catalogArr.length; i++) {
+    var li = document.createElement('li');
+    li.textContent = `${catalogArr[i].name} had ${catalogArr[i].votes} vote(s), and was seen ${catalogArr[i].views} times.`;
+    results.appendChild(li);
+  }
+}
+
+renderPicks();
+
+function handleVote(e) {
+  var pickClick = e.target.alt;
+  picks++;
+  renderPicks();
+
+  for (var i = 0; i < catalogArr.length; i++) {
+    if (pickClick === catalogArr[i].name)
+      catalogArr[i].votes++;
+  }
+
+  if (picks === voteCap) {
+    boxEl.removeEventListener('click', handleVote);
+    renderResults();
+  }
+}
+
+
+boxEl.addEventListener('click', handleVote);
 
 
 
