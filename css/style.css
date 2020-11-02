@@ -1,0 +1,47 @@
+header, main, footer {
+  padding: 10px;
+  text-align: center;
+  width: 900px;
+  margin: auto;
+}
+
+header, main {
+  font-family: 'Turret Road', cursive;
+  font-weight: bold;
+}
+
+h2 {
+  padding-top: 25px;
+}
+
+img {
+  width: 200px;
+  padding: 20px 10px 20px 10px;
+}
+
+footer {
+  font-family: 'Syne Mono', monospace;
+  margin-top: 20px;
+}
+
+section {
+  text-align: center;
+  border: 5px inset;
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+  border-radius: 100px;
+  padding: 25px;
+  margin-top: 50px;
+}
+
+ul {
+  padding: 30px;
+  width: 475px;
+  margin: auto;
+}
+
+li {
+  text-align: left;
+  margin: auto;
+  padding: 7px;
+}
