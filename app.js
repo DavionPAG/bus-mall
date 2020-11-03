@@ -8,6 +8,7 @@ var results = document.getElementById('results');
 var picks = 0;
 var catalogArr = [];
 var voteCap = 25;
+var renderQue = [];
 
 
 function Catalog(name) {
@@ -43,19 +44,23 @@ new Catalog('usb');
 new Catalog('water-can');
 new Catalog('wine-glass');
 
-
+function popRenderQue() {
+  renderQue = [];
+  while (renderQue.length < 3) {
+    var pick = rdmPix();
+    while (renderQue.includes(pick)) {
+      pick = rdmPix();
+    }
+    renderQue.push(pick);
+  }
+}
 
 function renderPicks() {
-  var pickOne = rdmPix();
-  var pickTwo = rdmPix();
-  var pickThree = rdmPix();
-
-  while (pickTwo === pickOne) {
-    pickTwo = rdmPix;
-    while (pickThree === pickTwo || pickThree === pickOne) {
-      pickThree = rdmPix;
-    }
-  }
+  popRenderQue();
+  console.log(renderQue);
+  var pickOne = renderQue[0];
+  var pickTwo = renderQue[1];
+  var pickThree = renderQue[2];
 
   imgOneEl.src = catalogArr[pickOne].src;
   imgOneEl.alt = catalogArr[pickOne].name;
