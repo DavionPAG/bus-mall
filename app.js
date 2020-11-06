@@ -5,11 +5,13 @@ var imgOneEl = document.getElementById('img-one');
 var imgTwoEl = document.getElementById('img-two');
 var imgThreeEl = document.getElementById('img-three');
 var results = document.getElementById('results');
+
 var picks = 0;
 var catalogArr = [];
 var voteCap = 25;
 var renderQue = [];
 
+var ctx = document.getElementById('myChart').getContext('2d');
 
 function Catalog(name) {
   this.name = name;
@@ -45,8 +47,10 @@ new Catalog('water-can');
 new Catalog('wine-glass');
 
 function popRenderQue() {
-  renderQue = [];
-  while (renderQue.length < 3) {
+  while (renderQue.length > 3) {
+    renderQue.shift();
+  }
+  while (renderQue.length < 6) {
     var pick = rdmPix();
     while (renderQue.includes(pick)) {
       pick = rdmPix();
@@ -98,7 +102,67 @@ function handleVote(e) {
     boxEl.removeEventListener('click', handleVote);
     renderResults();
   }
+
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: chartName,
+      datasets: [{
+        label: 'Votes',
+        data: chartVotes,
+        backgroundColor: [
+          'rgba(0, 0, 255, .9)',
+
+        ],
+        borderColor: [
+          'rgba(0, 255, 0, 1)',
+
+        ],
+        borderWidth: 1
+      },
+      {
+        label: 'Views',
+        data: chartViews,
+        backgroundColor: [
+          'rgba(0, 255, 0, 1)',
+
+        ],
+        borderColor: [
+          'rgba(0, 0, 255, 0.9)',
+
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 }
+
+var chartName = [];
+var chartVotes = [];
+var chartViews = [];
+
+function chartData() {
+  for (var i = 0; i < catalogArr.length; i++) {
+    chartName.push(catalogArr[i].name);
+    chartVotes.push(catalogArr[i].votes);
+    chartViews.push(catalogArr[i].views);
+  }
+
+}
+
+chartData();
+
+
+
 
 
 boxEl.addEventListener('click', handleVote);
