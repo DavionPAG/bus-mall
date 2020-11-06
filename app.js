@@ -4,7 +4,7 @@ var boxEl = document.getElementById('box');
 var imgOneEl = document.getElementById('img-one');
 var imgTwoEl = document.getElementById('img-two');
 var imgThreeEl = document.getElementById('img-three');
-var results = document.getElementById('results');
+// var results = document.getElementById('results');
 
 var picks = 0;
 var catalogArr = [];
@@ -78,15 +78,28 @@ function renderPicks() {
   catalogArr[pickThree].views++;
 }
 
-function renderResults() {
-  for (var i = 0; catalogArr.length; i++) {
-    var li = document.createElement('li');
-    li.textContent = `${catalogArr[i].name} had ${catalogArr[i].votes} vote(s), and was seen ${catalogArr[i].views} times.`;
-    results.appendChild(li);
-  }
-}
+// function renderResults() {
+//   for (var i = 0; catalogArr.length; i++) {
+//     var li = document.createElement('li');
+//     li.textContent = `${catalogArr[i].name} had ${catalogArr[i].votes} vote(s), and was seen ${catalogArr[i].views} times.`;
+//     results.appendChild(li);
+//   }
+// }
 
 renderPicks();
+
+var chartNames = [];
+var chartVotes = [];
+var chartViews = [];
+
+function chartData() {
+  for (var i = 0; i < catalogArr.length; i++) {
+    chartNames.push(catalogArr[i].name);
+    chartVotes.push(catalogArr[i].votes);
+    chartViews.push(catalogArr[i].views);
+  }
+
+}
 
 function handleVote(e) {
   var pickClick = e.target.alt;
@@ -100,72 +113,126 @@ function handleVote(e) {
 
   if (picks === voteCap) {
     boxEl.removeEventListener('click', handleVote);
-    renderResults();
-  }
+    chartData();
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: chartNames,
+        datasets: [
+          {
+            label: 'Vote(s)',
+            data: chartVotes,
+            backgroundColor: [
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+            ],
+            borderColor: [
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+            ],
+            borderWidth: 1
+          },
+          {
+            label: 'View(s)',
+            data: chartViews,
+            backgroundColor: [
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
+              'rgba(0, 255, 0, 1)',
 
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: chartName,
-      datasets: [{
-        label: 'Votes',
-        data: chartVotes,
-        backgroundColor: [
-          'rgba(0, 0, 255, .9)',
+            ],
+            borderColor: [
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
+              'rgba(0, 0, 255, 0.9)',
 
-        ],
-        borderColor: [
-          'rgba(0, 255, 0, 1)',
-
-        ],
-        borderWidth: 1
-      },
-      {
-        label: 'Views',
-        data: chartViews,
-        backgroundColor: [
-          'rgba(0, 255, 0, 1)',
-
-        ],
-        borderColor: [
-          'rgba(0, 0, 255, 0.9)',
-
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
+            ],
+            borderWidth: 1
           }
-        }]
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
       }
-    }
-  });
-}
-
-var chartName = [];
-var chartVotes = [];
-var chartViews = [];
-
-function chartData() {
-  for (var i = 0; i < catalogArr.length; i++) {
-    chartName.push(catalogArr[i].name);
-    chartVotes.push(catalogArr[i].votes);
-    chartViews.push(catalogArr[i].views);
+    });
+    // renderResults();
   }
-
 }
-
-chartData();
-
-
-
-
 
 boxEl.addEventListener('click', handleVote);
-
-
-
