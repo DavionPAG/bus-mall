@@ -61,21 +61,20 @@ function popRenderQue() {
 
 function renderPicks() {
   popRenderQue();
-  console.log(renderQue);
-  var pickOne = renderQue[0];
-  var pickTwo = renderQue[1];
-  var pickThree = renderQue[2];
+  // var pickOne = renderQue[0];
+  // var pickTwo = renderQue[1];
+  // var pickThree = renderQue[2];
 
-  imgOneEl.src = catalogArr[pickOne].src;
-  imgOneEl.alt = catalogArr[pickOne].name;
-  imgTwoEl.src = catalogArr[pickTwo].src;
-  imgTwoEl.alt = catalogArr[pickTwo].name;
-  imgThreeEl.src = catalogArr[pickThree].src;
-  imgThreeEl.alt = catalogArr[pickThree].name;
+  imgOneEl.src = catalogArr[renderQue[0]].src;
+  imgOneEl.alt = catalogArr[renderQue[0]].name;
+  imgTwoEl.src = catalogArr[renderQue[1]].src;
+  imgTwoEl.alt = catalogArr[renderQue[1]].name;
+  imgThreeEl.src = catalogArr[renderQue[2]].src;
+  imgThreeEl.alt = catalogArr[renderQue[2]].name;
 
-  catalogArr[pickOne].views++;
-  catalogArr[pickTwo].views++;
-  catalogArr[pickThree].views++;
+  catalogArr[renderQue[1]].views++;
+  catalogArr[renderQue[1]].views++;
+  catalogArr[renderQue[1]].views++;
 }
 
 // function renderResults() {
@@ -122,101 +121,19 @@ function handleVote(e) {
           {
             label: 'Vote(s)',
             data: chartVotes,
-            backgroundColor: [
+            backgroundColor:
               'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-            ],
-            borderColor: [
+            borderColor:
               'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-            ],
             borderWidth: 1
           },
           {
             label: 'View(s)',
             data: chartViews,
-            backgroundColor: [
+            backgroundColor:
               'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-              'rgba(0, 255, 0, 1)',
-
-            ],
-            borderColor: [
+            borderColor:
               'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-              'rgba(0, 0, 255, 0.9)',
-
-            ],
             borderWidth: 1
           }
         ]
