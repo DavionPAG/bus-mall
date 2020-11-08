@@ -28,8 +28,7 @@ function rdmPix() {
 var localCatalog = localStorage.getItem('localLog');
 
 if (localCatalog) {
-  var localResults = JSON.parse('localLog');
-  catalogArr = localResults;
+  catalogArr = JSON.parse(localCatalog);
 }
 
 else {
@@ -114,7 +113,7 @@ function handleVote(e) {
     boxEl.removeEventListener('click', handleVote);
     chartData();
 
-    localStorage.setItem('localCatalog', JSON.stringify(catalogArr));
+    localStorage.setItem('localLog', JSON.stringify(catalogArr));
 
     var myChart = new Chart(ctx, {
       type: 'bar',
