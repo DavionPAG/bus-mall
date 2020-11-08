@@ -8,7 +8,7 @@ var imgThreeEl = document.getElementById('img-three');
 
 var picks = 0;
 var catalogArr = [];
-var voteCap = 25;
+var voteCap = 20;
 var renderQue = [];
 
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -25,26 +25,35 @@ function rdmPix() {
   return Math.floor(Math.random() * catalogArr.length);
 }
 
-new Catalog('bag');
-new Catalog('banana');
-new Catalog('bathroom');
-new Catalog('boots');
-new Catalog('breakfast');
-new Catalog('bubblegum');
-new Catalog('chair');
-new Catalog('cthulhu');
-new Catalog('dog-duck');
-new Catalog('dragon');
-new Catalog('pen');
-new Catalog('pet-sweep');
-new Catalog('scissors');
-new Catalog('shark');
-new Catalog('sweep');
-new Catalog('tauntaun');
-new Catalog('unicorn');
-new Catalog('usb');
-new Catalog('water-can');
-new Catalog('wine-glass');
+var localCatalog = localStorage.getItem('localLog');
+
+if (localCatalog) {
+  var localResults = JSON.parse('localLog');
+  catalogArr = localResults;
+}
+
+else {
+  new Catalog('bag');
+  new Catalog('banana');
+  new Catalog('bathroom');
+  new Catalog('boots');
+  new Catalog('breakfast');
+  new Catalog('bubblegum');
+  new Catalog('chair');
+  new Catalog('cthulhu');
+  new Catalog('dog-duck');
+  new Catalog('dragon');
+  new Catalog('pen');
+  new Catalog('pet-sweep');
+  new Catalog('scissors');
+  new Catalog('shark');
+  new Catalog('sweep');
+  new Catalog('tauntaun');
+  new Catalog('unicorn');
+  new Catalog('usb');
+  new Catalog('water-can');
+  new Catalog('wine-glass');
+}
 
 function popRenderQue() {
   while (renderQue.length > 3) {
@@ -61,9 +70,6 @@ function popRenderQue() {
 
 function renderPicks() {
   popRenderQue();
-  // var pickOne = renderQue[0];
-  // var pickTwo = renderQue[1];
-  // var pickThree = renderQue[2];
 
   imgOneEl.src = catalogArr[renderQue[0]].src;
   imgOneEl.alt = catalogArr[renderQue[0]].name;
@@ -77,15 +83,9 @@ function renderPicks() {
   catalogArr[renderQue[1]].views++;
 }
 
-// function renderResults() {
-//   for (var i = 0; catalogArr.length; i++) {
-//     var li = document.createElement('li');
-//     li.textContent = `${catalogArr[i].name} had ${catalogArr[i].votes} vote(s), and was seen ${catalogArr[i].views} times.`;
-//     results.appendChild(li);
-//   }
-// }
-
 renderPicks();
+
+
 
 var chartNames = [];
 var chartVotes = [];
@@ -113,6 +113,9 @@ function handleVote(e) {
   if (picks === voteCap) {
     boxEl.removeEventListener('click', handleVote);
     chartData();
+
+    localStorage.setItem('localCatalog', JSON.stringify(catalogArr));
+
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -148,8 +151,8 @@ function handleVote(e) {
         }
       }
     });
-    // renderResults();
   }
 }
+
 
 boxEl.addEventListener('click', handleVote);
