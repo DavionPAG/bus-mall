@@ -8,7 +8,7 @@ var imgThreeEl = document.getElementById('img-three');
 
 var picks = 0;
 var catalogArr = [];
-var voteCap = 20;
+var voteCap = 25;
 var renderQue = [];
 
 var ctx = document.getElementById('myChart').getContext('2d');
