@@ -1,18 +1,20 @@
 'use strict';
 
+// DOM
 var boxEl = document.getElementById('box');
 var imgOneEl = document.getElementById('img-one');
 var imgTwoEl = document.getElementById('img-two');
 var imgThreeEl = document.getElementById('img-three');
-// var results = document.getElementById('results');
+var ctx = document.getElementById('myChart').getContext('2d');
 
+// varibles
 var picks = 0;
 var catalogArr = [];
 var voteCap = 25;
 var renderQue = [];
 
-var ctx = document.getElementById('myChart').getContext('2d');
 
+// constuctor
 function Catalog(name) {
   this.name = name;
   this.src = `img/${name}.jpg`;
@@ -21,16 +23,19 @@ function Catalog(name) {
   catalogArr.push(this);
 }
 
+// rdm Num gen
 function rdmPix() {
   return Math.floor(Math.random() * catalogArr.length);
 }
 
+// Check local storage. If 'localLog' exists then do the thing.
 var localCatalog = localStorage.getItem('localLog');
 
 if (localCatalog) {
   catalogArr = JSON.parse(localCatalog);
 }
 
+// make new things
 else {
   new Catalog('bag');
   new Catalog('banana');
@@ -54,6 +59,7 @@ else {
   new Catalog('wine-glass');
 }
 
+// Insures unique images
 function popRenderQue() {
   while (renderQue.length > 3) {
     renderQue.shift();
@@ -67,6 +73,7 @@ function popRenderQue() {
   }
 }
 
+// Render to the DOM
 function renderPicks() {
   popRenderQue();
 
@@ -85,7 +92,7 @@ function renderPicks() {
 renderPicks();
 
 
-
+// Chart variables
 var chartNames = [];
 var chartVotes = [];
 var chartViews = [];
@@ -99,6 +106,7 @@ function chartData() {
 
 }
 
+// increments votes, checks veiws, populate chart.
 function handleVote(e) {
   var pickClick = e.target.alt;
   picks++;
